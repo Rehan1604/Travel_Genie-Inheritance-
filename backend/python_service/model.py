@@ -1,7 +1,8 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 import torch
-
+#connecting the model
 MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.2"
+
 
 bnb = BitsAndBytesConfig(
     load_in_4bit=True,

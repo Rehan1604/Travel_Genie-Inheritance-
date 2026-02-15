@@ -3,6 +3,7 @@ import os
 import pandas as pd
 
 # Build absolute path safely
+#adding to git
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_PATH = os.path.join(BASE_DIR, "data", "cleaned", "final_dataset_clean.csv")
 
