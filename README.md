@@ -1,231 +1,221 @@
-# TravelGenie (AI-Powered Smart Travel Planning System)
+<h1 align="center">
+  <a href="https://github.com/CommunityOfCoders/Inheritance2k25">
+    CoC Inheritance 2025
+  </a>
+  <br>
+  TravelGenie : AI-Powered Smart Travel Planning System
+</h1>
 
-## 1. Project Overview
+<div align="center">
+By Bitten By Python
+</div>
+<hr>
 
-TravelGenie is an intelligent travel planning system that generates personalized, structured, and optimized travel itineraries using a locally deployed Large Language Model.
+<details>
+<summary>Table of Contents</summary>
 
-The system combines:
+- [Description](#description)
+- [Links](#links)
+- [Tech Stack](#tech-stack)
+- [Progress](#progress)
+- [Future Scope](#future-scope)
+- [Applications](#applications)
+- [Project Setup](#project-setup)
+- [Team Members](#team-members)
+- [Mentors](#mentors)
 
-* Structured dataset filtering
-* Context-aware LLM generation
-* GPU-accelerated inference
+</details>
 
-Users provide travel preferences, and the system produces a realistic, day-wise itinerary tailored to their inputs.
+<a name="description"></a>
 
----
+## 📝 Description
 
-## 2. Core Functionality
+TravelGenie is an AI-powered smart travel planning system that generates personalized, structured, and optimized travel itineraries using a locally deployed Large Language Model.
 
-TravelGenie allows users to specify:
-
-* Destination
-* Number of travel days
-* Budget range
-* Travel category (historical, religious, nature, etc.)
-
-Based on these inputs, the system generates:
-
-* Structured day-wise itinerary
-* Contextual activity descriptions
-* Climate information
-* Budget-aligned recommendations
-
----
-
-## 3. Key Features
-
-### 3.1 Personalized Itinerary Generation
-
-* Automatically generates structured travel plans divided by day.
-* Logical sequencing of activities.
-
-### 3.2 AI-Enhanced Content
-
-* Uses Mistral 7B Instruct for contextual descriptions.
-* Improves readability and recommendation quality.
-
-### 3.3 Budget-Aware Filtering
-
-* Filters destinations and activities based on price constraints.
-* Ensures realistic recommendations.
-
-### 3.4 City-Restricted Output
-
-* Prevents cross-city or irrelevant suggestions.
-* Strict dataset-based filtering before LLM generation.
-
-### 3.5 Climate Summary Integration
-
-* Includes climate data for selected destination.
-* Assists in better travel preparation.
-
-### 3.6 Editable Itinerary
-
-* Users can modify generated plans.
-* Supports customization after generation.
-
-### 3.7 Local Storage Support
-
-* Stores generated itineraries in browser localStorage.
-* Allows session persistence without backend storage.
+It bridges the gap between generic travel suggestions and realistic, budget-aware planning by combining structured dataset filtering with contextual LLM generation. Built with React, FastAPI, and Mistral 7B Instruct running locally with GPU acceleration, TravelGenie delivers city-restricted and logically sequenced day-wise travel plans.
 
 ---
 
-## 4. System Architecture
+<a name="links"></a>
 
-```
-User Input
-    ↓
-React Frontend (Vite)
-    ↓
-Axios API Request
-    ↓
-FastAPI Backend
-    ↓
-CSV Dataset Filtering
-    ↓
-Structured Prompt Injection
-    ↓
-Mistral 7B Instruct (4-bit Quantized)
-    ↓
-GPU Accelerated Inference (RTX 4060, CUDA 12.7)
-    ↓
-Structured Day-wise Itinerary
-    ↓
-Frontend Rendering + Local Storage
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/Rehan1604/Travel_Genie-Inheritance-)
+- [Demo Video](https://drive.google.com/file/d/17rnifMKwYDJi85VA_xYY3rXyMjG5T3Hy/view?usp=drive_link)
+- [Project Screenshots/Drive](https://drive.google.com/drive/folders/1NHrsDFPxkjYD7yWH67OHcHFVX3k0ld5h?usp=drive_link)
+- Hosted Website: Not Deployed Yet
+
+---
+
+<a name="tech-stack"></a>
+
+## 🤖 Tech-Stack
+
+### 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+U["User Preferences\nDestination | Days | Budget | Category"]
+FE["React Frontend (Vite)"]
+API["Axios API Communication"]
+BE["FastAPI Backend"]
+FILTER["CSV Dataset Filtering"]
+PROMPT["Structured Prompt Construction"]
+LLM["Mistral 7B Instruct\n4-bit Quantized"]
+GPU["RTX 4060 GPU - CUDA 12.7"]
+OUT["Day-wise Structured Itinerary Output"]
+
+U --> FE
+FE --> API
+API --> BE
+BE --> FILTER
+FILTER --> PROMPT
+PROMPT --> LLM
+
+LLM --- GPU
+LLM --> OUT
+OUT --> FE
 ```
 
 ---
 
-## 5. System Workflow
+## Front-end
 
-1. User enters travel details in the React interface.
-2. Axios sends request to FastAPI backend.
-3. Backend reads and filters structured CSV dataset based on:
+The user interface is built for clarity and interactivity, ensuring seamless itinerary generation.
 
-   * Destination
-   * Budget
-   * Category
-   * Climate
-4. Filtered structured data is embedded into the LLM prompt.
-5. Mistral 7B Instruct generates a structured itinerary.
-6. Backend returns formatted response.
-7. Frontend renders itinerary dynamically.
-8. Itinerary is optionally stored in localStorage.
+**Framework:** React.js (Vite)  
+**Communication:** Axios  
+**Storage:** Browser localStorage  
 
----
+### Key Features
 
-## 6. Technology Stack
-
-### 6.1 Frontend
-
-* React.js (Vite)
-* Axios (API communication)
-* Dynamic Chat Interface
-* localStorage for itinerary persistence
-
-### 6.2 Backend
-
-* FastAPI
-* HuggingFace Transformers
-* Accelerate
-* Mistral 7B Instruct
-
-### 6.3 AI Infrastructure
-
-* 4-bit quantization
-* NVIDIA RTX 4060 GPU
-* CUDA 12.7
-* Transformers + Accelerate pipeline
-
-### 6.4 Data Layer
-
-* Structured CSV dataset
-* Cities from India, USA, and Iran
-* Includes:
-
-  * City name
-  * Climate conditions
-  * Pricing range
-  * Category metadata
+- Dynamic chat-based input interface  
+- Real-time itinerary rendering  
+- Editable travel plans  
+- Persistent storage of generated itineraries  
 
 ---
 
-## 7. Project Structure
+## Back-end
 
-```
-Travel_Genie-Inheritance-
-│
-├── frontend/
-│   ├── src/
-│   └── vite.config.js
-│
-├── backend/
-│   ├── main.py
-│   ├── model_loader.py
-│   └── dataset.csv
-│
-├── requirements.txt
-└── README.md
-```
+The backend handles dataset filtering, LLM orchestration, and structured output formatting.
+
+**Framework:** FastAPI  
+**Model Runtime:** HuggingFace Transformers + Accelerate  
+
+### Core Components
+
+- Dataset filtering engine (CSV-based)  
+- Prompt construction logic  
+- LLM inference pipeline  
+- Structured response formatter  
 
 ---
 
-## 8. Installation Guide
+## Database & Machine Learning
 
-### Step 1: Clone Repository
+**Data Layer:** Structured CSV dataset (India, USA, Iran cities)  
+**Includes:** Climate data, pricing ranges, category metadata  
 
-```
-git clone https://github.com/YOUR_USERNAME/Travel_Genie-Inheritance-.git
+### AI Infrastructure
+
+- Mistral 7B Instruct  
+- 4-bit quantization  
+- NVIDIA RTX 4060 GPU  
+- CUDA 12.7  
+
+---
+
+<a name="progress"></a>
+
+## 📈 Progress
+
+### Fully Implemented Features
+
+* Personalized Day-wise Itinerary Generation  
+* Budget-Aware Filtering  
+* City-Restricted Recommendations  
+* Climate Summary Integration  
+* Local GPU Inference  
+
+---
+
+### Partially Implemented Features / Work in Progress
+
+* Cloud Deployment  
+* External API Integrations  
+* Multi-city Route Optimization  
+
+---
+
+<a name="future-scope"></a>
+
+## 🔮 Future Scope
+
+- Real-time travel API integration  
+- Multi-city itinerary optimization  
+- User authentication and trip storage  
+- Scalable LLM deployment  
+- Advanced personalization mechanisms  
+
+---
+
+<a name="applications"></a>
+
+## 💸 Applications
+
+1. Personalized Travel Planning  
+2. AI Travel Assistant Systems  
+3. Academic AI Demonstration  
+
+---
+
+<a name="project-setup"></a>
+
+## 🛠 Project Setup
+
+### Clone Repository
+
+```bash
+git clone https://github.com/Rehan1604/Travel_Genie-Inheritance-.git
 cd Travel_Genie-Inheritance-
 ```
 
-Replace `YOUR_USERNAME` with your GitHub username.
+### Backend Setup
 
----
-
-### Step 2: Backend Setup
-
-```
+```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-System Requirements:
+### Frontend Setup
 
-* CUDA 12.7 installed
-* NVIDIA GPU drivers configured
-* PyTorch with CUDA support
-
----
-
-### Step 3: Frontend Setup
-
-```
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
----
-
-## 9. Use Cases
-
-* Personalized travel planning
-* Budget-based itinerary generation
-* Academic AI demonstration
-* Local LLM deployment showcase
-* Structured prompt engineering implementation
+Frontend runs via `npm run dev`.  
+Backend runs via `uvicorn main:app --reload`.
 
 ---
 
-## 10. Future Improvements
+<a name="team-members"></a>
 
-* Real-time weather API integration
-* Hotel and flight API integration
-* Multi-city route optimization
-* User authentication and cloud storage
-* Cloud-based LLM deployment
-* Vector database integration for scalable retrieval
+## 👨‍💻 Team Members
 
+* **Rehan Mehta** – https://github.com/Rehan1604  
+* **Devansh Mehta** – https://github.com/Devansh270  
+* **Bhavya Gothi** – https://github.com/Bhavya4523  
+* **Jehan Bheda** – https://github.com/jehanbheda  
+
+---
+
+<a name="mentors"></a>
+
+## 👨‍🏫 Mentors
+
+* **Harsh Ogale** – https://github.com/harshogale04  
+* **Piyush Patil** – https://github.com/MAVERICK-111
